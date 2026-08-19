@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<div style="max-width:900px;margin:0 auto;background:#fff;padding:24px;border:1px solid #ddd;">
+  <h1 style="margin:0;">Invoice</h1>
+  <p><strong>Order:</strong> {{ order.order_number }}</p>
+  <p><strong>Date:</strong> {{ order.created_at }}</p>
+  <hr/>
+  <h3>Customer</h3>
+  <p>{{ order.customer.name }}</p>
+  <p>{{ order.customer.phone }}{% if order.customer.secondary_phone %} / {{ order.customer.secondary_phone }}{% endif %}</p>
+  <p>{{ order.customer.address }}</p>
+  <h3>Items</h3>
+  <table style="width:100%;border-collapse:collapse;">
+    <tr><th style="text-align:left;border-bottom:1px solid #ddd;">Book</th><th style="text-align:right;border-bottom:1px solid #ddd;">Qty</th><th style="text-align:right;border-bottom:1px solid #ddd;">Unit</th><th style="text-align:right;border-bottom:1px solid #ddd;">Amount</th></tr>
+    <tr><td>{{ order.book.title }}</td><td style="text-align:right;">{{ order.quantity }}</td><td style="text-align:right;">{{ order.unit_price }}</td><td style="text-align:right;">{{ order.subtotal }}</td></tr>
+  </table>
+  <p style="text-align:right;">Discount: {{ order.discount_amount }}</p>
+  <p style="text-align:right;">Delivery Charge: {{ order.delivery_charge }}</p>
+  <h2 style="text-align:right;">Total: {{ order.total_amount }}</h2>
+  <p><strong>Payment Method:</strong> {{ order.payment_method }} (COD)</p>
+</div>
+<script>window.print()</script>
+{% endblock %}

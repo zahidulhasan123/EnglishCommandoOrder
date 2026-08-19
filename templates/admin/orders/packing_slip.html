@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<div style="max-width:900px;margin:0 auto;background:#fff;padding:24px;border:1px solid #ddd;">
+  <h1 style="margin:0;">Packing Slip</h1>
+  <p><strong>Order:</strong> {{ order.order_number }}</p>
+  <p><strong>Customer:</strong> {{ order.customer.name }}</p>
+  <p><strong>Phone:</strong> {{ order.customer.phone }}</p>
+  <p><strong>Address:</strong> {{ order.customer.address }}</p>
+  <p><strong>Book:</strong> {{ order.book.title }} ({{ order.quantity }})</p>
+  <p><strong>Courier:</strong> {% if shipment %}{{ shipment.courier }}{% else %}N/A{% endif %}</p>
+  <p><strong>Consignment ID:</strong> {% if shipment %}{{ shipment.consignment_id }}{% else %}N/A{% endif %}</p>
+</div>
+<script>window.print()</script>
+{% endblock %}

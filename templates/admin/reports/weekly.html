@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Weekly Report</h1>
+<form method="get">
+  <label>Mode</label>
+  <select name="mode">
+    <option value="current">Current Week</option>
+    <option value="previous">Previous Week</option>
+  </select>
+  <button type="submit">Generate</button>
+</form>
+{% if data %}
+<p>Range: {{ data.range.start }} to {{ data.range.end }}</p>
+<p>Orders: {{ data.summary.total_orders }} | Sales: {{ data.summary.gross_sales }}</p>
+{% endif %}
+{% endblock %}

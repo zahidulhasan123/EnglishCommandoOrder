@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Monthly Report</h1>
+<form method="get">
+  <label>Year</label>
+  <input type="number" name="year" value="{{ year }}" />
+  <label>Month</label>
+  <input type="number" min="1" max="12" name="month" value="{{ month }}" />
+  <button type="submit">Generate</button>
+</form>
+{% if data %}
+<p>Orders: {{ data.summary.total_orders }} | Revenue: {{ data.summary.gross_sales }} | Delivered: {{ data.summary.delivered }}</p>
+{% endif %}
+{% endblock %}

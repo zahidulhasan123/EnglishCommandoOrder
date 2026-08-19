@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Custom Date Range Report</h1>
+<form method="get">
+  <label>From</label>
+  <input type="date" name="start" value="{{ start|date:'Y-m-d' }}" />
+  <label>To</label>
+  <input type="date" name="end" value="{{ end|date:'Y-m-d' }}" />
+  <button type="submit">Generate</button>
+</form>
+{% if data %}
+<p>Range: {{ data.range.start }} to {{ data.range.end }}</p>
+<p>Orders: {{ data.summary.total_orders }} | Sales: {{ data.summary.gross_sales }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Reports</h1>
+<ul>
+  <li><a href="{% url 'reports-daily' %}">Daily Report</a></li>
+  <li><a href="{% url 'reports-weekly' %}">Weekly Report</a></li>
+  <li><a href="{% url 'reports-monthly' %}">Monthly Report</a></li>
+  <li><a href="{% url 'reports-custom' %}">Custom Date Range Report</a></li>
+</ul>
+{% endblock %}

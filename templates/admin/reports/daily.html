@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Daily Report</h1>
+<form method="get">
+  <label>Date</label>
+  <input type="date" name="date" value="{{ report_date|date:'Y-m-d' }}" />
+  <button type="submit">Generate</button>
+</form>
+{% if data %}
+<h2>Summary</h2>
+<p>Orders: {{ data.summary.total_orders }} | Books Sold: {{ data.summary.books_sold }} | Sales: {{ data.summary.gross_sales }}</p>
+<p>Delivered: {{ data.summary.delivered }} | Cancelled: {{ data.summary.cancelled }} | Returned: {{ data.summary.returned }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Bulk Packing Slips</h1>
+{% for order in orders %}
+  <div style="border:1px solid #ddd;padding:16px;margin-bottom:16px;">
+    <p><strong>Order:</strong> {{ order.order_number }}</p>
+    <p><strong>Customer:</strong> {{ order.customer.name }}</p>
+    <p><strong>Phone:</strong> {{ order.customer.phone }}</p>
+    <p><strong>Address:</strong> {{ order.customer.address }}</p>
+    <p><strong>Book:</strong> {{ order.book.title }} ({{ order.quantity }})</p>
+  </div>
+  <div style="page-break-after:always;"></div>
+{% endfor %}
+<script>window.print()</script>
+{% endblock %}
