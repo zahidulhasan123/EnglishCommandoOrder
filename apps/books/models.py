@@ -7,7 +7,7 @@ from django.utils.text import slugify
 
 class Book(models.Model):
 	title = models.CharField(max_length=255)
-	slug = models.SlugField(max_length=280, unique=True, db_index=True)
+	slug = models.SlugField(max_length=255, unique=True, db_index=True)
 	author = models.CharField(max_length=255, blank=True)
 	description = models.TextField(blank=True)
 	cover_image = models.ImageField(upload_to="books/covers/", blank=True, null=True)
