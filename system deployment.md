@@ -1,6 +1,6 @@
 Use this for enviromnent variable:
 -----------------------------------------------------
-SECRET_KEY=replace-with-a-strong-random-secret
+SECRET_KEY=(s&-x6got5(=ia%nqrzp9fe74#z@wajklh9s$mdp(+!)w^5qwq
 DEBUG=False
 
 ALLOWED_HOSTS=orderapi.englishcommando.bd
