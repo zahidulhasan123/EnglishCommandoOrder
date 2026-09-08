@@ -8,6 +8,7 @@ from django.utils.html import format_html
 from apps.audit.models import ActivityLog
 from apps.courier.models import CourierProvider
 from apps.courier.services.courier_service import CourierService
+from apps.customers.services.verification_service import VerificationService
 from apps.orders.models import Order, OrderStatus, OrderStatusHistory
 from apps.reports.services.export_service import ExportService
 
@@ -61,6 +62,7 @@ class OrderAdmin(admin.ModelAdmin):
 		"mark_as_ready_to_ship",
 		"cancel_selected",
 		"send_selected_to_steadfast",
+		"generate_activation_codes",
 		"export_selected_csv",
 		"export_selected_xlsx",
 		"print_selected_invoices",
@@ -343,6 +345,29 @@ class OrderAdmin(admin.ModelAdmin):
 			else:
 				skipped += 1
 		self.message_user(request, f"Updated {updated} order(s), skipped {skipped} invalid transition(s).")
+
+	@admin.action(description="Generate activation codes for selected phone numbers")
+	def generate_activation_codes(self, request, queryset):
+		phones = list(
+			dict.fromkeys(
+				phone for phone in queryset.select_related("customer").values_list("customer__phone", flat=True) if phone
+			)
+		)
+		success = 0
+		failed = 0
+		errors = []
+		for phone in phones:
+			ok, message = VerificationService.generate_code(phone)
+			if ok:
+				success += 1
+			else:
+				failed += 1
+				errors.append(f"{phone}: {message}")
+		level = messages.SUCCESS if not failed else messages.WARNING
+		summary = f"Activation codes generated: {success} succeeded, {failed} failed."
+		if errors:
+			summary += " Errors: " + "; ".join(errors[:5])
+		self.message_user(request, summary, level=level)
 
 	@admin.action(description="Export selected orders (CSV)")
 	def export_selected_csv(self, request, queryset):
