@@ -4,40 +4,48 @@
 {% block extrastyle %}
 {{ block.super }}
 <style>
-  .dash-wrap { --dash-blue:#2563eb; --dash-green:#16a34a; --dash-red:#dc2626; --dash-amber:#d97706; --dash-purple:#7c3aed; --dash-slate:#475569; }
-  .dash-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:4px 0 22px 0; }
-  .dash-header h1 { font-size:22px; font-weight:700; margin:0; color:#111827; }
-  .dash-actions { display:flex; flex-wrap:wrap; gap:8px; }
-  .dash-actions a { text-decoration:none; font-size:12.5px; font-weight:600; color:#fff; background:var(--dash-blue); padding:8px 14px; border-radius:8px; box-shadow:0 1px 2px rgba(0,0,0,.08); transition:transform .12s ease, box-shadow .12s ease; }
-  .dash-actions a:hover { transform:translateY(-1px); box-shadow:0 4px 10px rgba(37,99,235,.35); }
-  .dash-actions a.secondary { background:#fff; color:#111827; border:1px solid #e2e8f0; }
-  .dash-actions a.secondary:hover { box-shadow:0 4px 10px rgba(0,0,0,.08); }
+  .dash-wrap { color:#0f172a; }
+  .dash-wrap * { box-sizing:border-box; }
 
-  .dash-section-title { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#64748b; margin:26px 0 10px 2px; }
+  .dash-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; margin:2px 0 28px 0; padding-bottom:20px; border-bottom:1px solid #e5e7eb; }
+  .dash-header h1 { font-size:20px; font-weight:600; margin:0; color:#0f172a; letter-spacing:-.01em; }
+  .dash-header p { margin:4px 0 0 0; font-size:13px; color:#94a3b8; }
+  .dash-actions { display:flex; flex-wrap:wrap; gap:8px; }
+  .dash-actions a { display:inline-flex; align-items:center; gap:6px; text-decoration:none; font-size:13px; font-weight:500; color:#334155; background:#fff; padding:7px 13px; border-radius:8px; border:1px solid #e2e8f0; transition:background .12s ease, border-color .12s ease; }
+  .dash-actions a:hover { background:#f8fafc; border-color:#cbd5e1; }
+  .dash-actions a.primary { background:#0f172a; color:#fff; border-color:#0f172a; }
+  .dash-actions a.primary:hover { background:#1e293b; }
+  .dash-actions a svg { width:14px; height:14px; flex-shrink:0; }
+
+  .dash-section-title { font-size:12.5px; font-weight:600; letter-spacing:.02em; color:#64748b; margin:30px 2px 12px 2px; }
   .dash-section-title:first-of-type { margin-top:0; }
 
-  .dash-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+  .dash-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; }
 
-  .dash-card { position:relative; background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:16px 18px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.04); transition:box-shadow .15s ease, transform .15s ease; }
-  .dash-card:hover { box-shadow:0 8px 20px rgba(0,0,0,.08); transform:translateY(-2px); }
-  .dash-card::before { content:""; position:absolute; top:0; left:0; width:5px; height:100%; background:var(--accent,var(--dash-blue)); }
-  .dash-card-icon { font-size:20px; line-height:1; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; background:color-mix(in srgb, var(--accent,var(--dash-blue)) 14%, white); margin-bottom:10px; }
-  .dash-card-label { font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
-  .dash-card-value { font-size:24px; font-weight:800; color:#111827; line-height:1.1; }
+  .dash-card { display:flex; align-items:flex-start; gap:12px; background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; transition:border-color .12s ease, box-shadow .12s ease; }
+  .dash-card:hover { border-color:#cbd5e1; box-shadow:0 1px 6px rgba(15,23,42,.06); }
+  .dash-card-icon { width:38px; height:38px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--tint,#eef2ff); color:var(--ink,#4f46e5); }
+  .dash-card-icon svg { width:19px; height:19px; }
+  .dash-card-body { min-width:0; }
+  .dash-card-label { font-size:12px; font-weight:500; color:#94a3b8; margin-bottom:3px; }
+  .dash-card-value { font-size:22px; font-weight:700; color:#0f172a; line-height:1.15; letter-spacing:-.01em; }
 
-  .dash-panel { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:18px 20px; margin-bottom:6px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
-  .dash-panel h3 { margin:0 0 14px 0; font-size:15px; font-weight:700; color:#111827; display:flex; align-items:center; gap:8px; }
+  .dash-panel { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:18px 20px; }
 
-  .pipeline-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
-  .pipeline-item { display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:10px; background:#f8fafc; border:1px solid #eef2f7; }
-  .pipeline-dot { width:10px; height:10px; border-radius:50%; background:var(--accent,var(--dash-blue)); flex-shrink:0; box-shadow:0 0 0 4px color-mix(in srgb, var(--accent,var(--dash-blue)) 18%, transparent); }
-  .pipeline-text .num { font-size:19px; font-weight:800; color:#111827; display:block; }
-  .pipeline-text .label { font-size:12px; color:#6b7280; font-weight:600; }
+  .pipeline-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:0; }
+  .pipeline-item { display:flex; align-items:center; gap:12px; padding:6px 18px; border-left:1px solid #eef2f7; }
+  .pipeline-item:first-child { border-left:none; padding-left:0; }
+  .pipeline-icon { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--tint,#eef2ff); color:var(--ink,#4f46e5); }
+  .pipeline-icon svg { width:17px; height:17px; }
+  .pipeline-text .num { font-size:19px; font-weight:700; color:#0f172a; display:block; line-height:1.2; }
+  .pipeline-text .label { font-size:12px; color:#94a3b8; font-weight:500; }
 
-  .stock-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
-  .stock-list li { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:9px; background:#fef2f2; border:1px solid #fee2e2; font-size:13.5px; }
-  .stock-list .badge { font-weight:800; color:#dc2626; background:#fff; border:1px solid #fecaca; border-radius:999px; padding:2px 10px; font-size:12px; }
-  .stock-empty { color:#16a34a; font-weight:600; font-size:13.5px; background:#f0fdf4; border:1px solid #dcfce7; padding:10px 12px; border-radius:9px; }
+  .stock-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; }
+  .stock-list li { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 2px; border-bottom:1px solid #f1f5f9; font-size:13.5px; color:#334155; }
+  .stock-list li:last-child { border-bottom:none; }
+  .stock-list .badge { font-weight:600; color:#b45309; background:#fffbeb; border:1px solid #fde68a; border-radius:999px; padding:2px 10px; font-size:12px; white-space:nowrap; }
+  .stock-empty { display:flex; align-items:center; gap:8px; color:#16a34a; font-weight:500; font-size:13.5px; }
+  .stock-empty svg { width:16px; height:16px; }
 </style>
 {% endblock %}
 
@@ -45,121 +53,152 @@
 {% dashboard_metrics as metrics %}
 <div class="dash-wrap">
   <div class="dash-header">
-    <h1>📊 Operations Dashboard</h1>
+    <div>
+      <h1>Operations Dashboard</h1>
+      <p>Live snapshot of orders, revenue and fulfilment</p>
+    </div>
     <div class="dash-actions">
-      <a href="/admin/orders/order/add/">+ New Order</a>
-      <a href="/admin/books/book/add/">+ New Book</a>
-      <a class="secondary" href="/admin/orders/order/?status__exact=NEW">New Orders</a>
-      <a class="secondary" href="/admin/orders/order/?status__exact=READY_TO_SHIP">Ready to Ship</a>
-      <a class="secondary" href="/admin/reports/daily/">Today's Report</a>
+      <a class="primary" href="/admin/orders/order/add/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        New Order
+      </a>
+      <a href="/admin/books/book/add/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        New Book
+      </a>
+      <a href="/admin/orders/order/?status__exact=NEW">New Orders</a>
+      <a href="/admin/orders/order/?status__exact=READY_TO_SHIP">Ready to Ship</a>
+      <a href="/admin/reports/daily/">Today's Report</a>
     </div>
   </div>
 
-  <div class="dash-section-title">Today</div>
+  <div class="dash-section-title">TODAY</div>
   <div class="dash-grid">
-    <div class="dash-card" style="--accent:var(--dash-blue)">
-      <div class="dash-card-icon">🧾</div>
-      <div class="dash-card-label">Orders</div>
-      <div class="dash-card-value">{{ metrics.today.orders }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#eef2ff;--ink:#4f46e5;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 4 5v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5l-2-3"/><path d="M4 5h16M9 9a3 3 0 0 0 6 0"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Orders</div><div class="dash-card-value">{{ metrics.today.orders }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-green)">
-      <div class="dash-card-icon">💰</div>
-      <div class="dash-card-label">Revenue</div>
-      <div class="dash-card-value">{{ metrics.today.revenue }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#ecfdf5;--ink:#059669;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.2-2.2 2.5-2.2s2.5.7 2.5 2c0 2.6-5 1.4-5 4 0 1.3 1.2 2.2 2.5 2.2s2.5-.8 2.5-2.2"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Revenue</div><div class="dash-card-value">{{ metrics.today.revenue }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-purple)">
-      <div class="dash-card-icon">✅</div>
-      <div class="dash-card-label">Delivered</div>
-      <div class="dash-card-value">{{ metrics.today.delivered }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#ecfdf5;--ink:#16a34a;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Delivered</div><div class="dash-card-value">{{ metrics.today.delivered }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-red)">
-      <div class="dash-card-icon">✖️</div>
-      <div class="dash-card-label">Cancelled</div>
-      <div class="dash-card-value">{{ metrics.today.cancelled }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#fef2f2;--ink:#dc2626;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9.5 9.5 5 5m0-5-5 5"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Cancelled</div><div class="dash-card-value">{{ metrics.today.cancelled }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-red)">
-      <div class="dash-card-icon">↩️</div>
-      <div class="dash-card-label">Returned</div>
-      <div class="dash-card-value">{{ metrics.today.returned }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#fff1f2;--ink:#e11d48;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Returned</div><div class="dash-card-value">{{ metrics.today.returned }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-amber)">
-      <div class="dash-card-icon">⏳</div>
-      <div class="dash-card-label">Pending</div>
-      <div class="dash-card-value">{{ metrics.today.pending }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#fffbeb;--ink:#d97706;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Pending</div><div class="dash-card-value">{{ metrics.today.pending }}</div></div>
     </div>
   </div>
 
-  <div class="dash-section-title">This Week</div>
+  <div class="dash-section-title">THIS WEEK</div>
   <div class="dash-grid">
-    <div class="dash-card" style="--accent:var(--dash-blue)">
-      <div class="dash-card-icon">🧾</div>
-      <div class="dash-card-label">Orders</div>
-      <div class="dash-card-value">{{ metrics.week.orders|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#eef2ff;--ink:#4f46e5;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 4 5v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5l-2-3"/><path d="M4 5h16M9 9a3 3 0 0 0 6 0"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Orders</div><div class="dash-card-value">{{ metrics.week.orders|default:0 }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-green)">
-      <div class="dash-card-icon">💰</div>
-      <div class="dash-card-label">Revenue</div>
-      <div class="dash-card-value">{{ metrics.week.revenue|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#ecfdf5;--ink:#059669;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.2-2.2 2.5-2.2s2.5.7 2.5 2c0 2.6-5 1.4-5 4 0 1.3 1.2 2.2 2.5 2.2s2.5-.8 2.5-2.2"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Revenue</div><div class="dash-card-value">{{ metrics.week.revenue|default:0 }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-purple)">
-      <div class="dash-card-icon">✅</div>
-      <div class="dash-card-label">Delivered</div>
-      <div class="dash-card-value">{{ metrics.week.delivered|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#ecfdf5;--ink:#16a34a;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Delivered</div><div class="dash-card-value">{{ metrics.week.delivered|default:0 }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-red)">
-      <div class="dash-card-icon">✖️</div>
-      <div class="dash-card-label">Cancelled</div>
-      <div class="dash-card-value">{{ metrics.week.cancelled|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#fef2f2;--ink:#dc2626;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9.5 9.5 5 5m0-5-5 5"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Cancelled</div><div class="dash-card-value">{{ metrics.week.cancelled|default:0 }}</div></div>
     </div>
   </div>
 
-  <div class="dash-section-title">This Month</div>
+  <div class="dash-section-title">THIS MONTH</div>
   <div class="dash-grid">
-    <div class="dash-card" style="--accent:var(--dash-blue)">
-      <div class="dash-card-icon">🧾</div>
-      <div class="dash-card-label">Orders</div>
-      <div class="dash-card-value">{{ metrics.month.orders|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#eef2ff;--ink:#4f46e5;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 4 5v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5l-2-3"/><path d="M4 5h16M9 9a3 3 0 0 0 6 0"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Orders</div><div class="dash-card-value">{{ metrics.month.orders|default:0 }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-green)">
-      <div class="dash-card-icon">💰</div>
-      <div class="dash-card-label">Revenue</div>
-      <div class="dash-card-value">{{ metrics.month.revenue|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#ecfdf5;--ink:#059669;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.2-2.2 2.5-2.2s2.5.7 2.5 2c0 2.6-5 1.4-5 4 0 1.3 1.2 2.2 2.5 2.2s2.5-.8 2.5-2.2"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Revenue</div><div class="dash-card-value">{{ metrics.month.revenue|default:0 }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-purple)">
-      <div class="dash-card-icon">✅</div>
-      <div class="dash-card-label">Delivered</div>
-      <div class="dash-card-value">{{ metrics.month.delivered|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#ecfdf5;--ink:#16a34a;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Delivered</div><div class="dash-card-value">{{ metrics.month.delivered|default:0 }}</div></div>
     </div>
-    <div class="dash-card" style="--accent:var(--dash-red)">
-      <div class="dash-card-icon">↩️</div>
-      <div class="dash-card-label">Returned</div>
-      <div class="dash-card-value">{{ metrics.month.returned|default:0 }}</div>
+    <div class="dash-card">
+      <div class="dash-card-icon" style="--tint:#fff1f2;--ink:#e11d48;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+      </div>
+      <div class="dash-card-body"><div class="dash-card-label">Returned</div><div class="dash-card-value">{{ metrics.month.returned|default:0 }}</div></div>
     </div>
   </div>
 
-  <div class="dash-section-title">Pipeline</div>
+  <div class="dash-section-title">PIPELINE</div>
   <div class="dash-panel">
     <div class="pipeline-row">
       <div class="pipeline-item">
-        <span class="pipeline-dot" style="--accent:var(--dash-blue)"></span>
+        <div class="pipeline-icon" style="--tint:#eef2ff;--ink:#4f46e5;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2M4 8l1.5 10.2a1 1 0 0 0 1 .8h11a1 1 0 0 0 1-.8L20 8M4 8h16"/></svg>
+        </div>
         <div class="pipeline-text"><span class="num">{{ metrics.pipeline.awaiting_confirmation }}</span><span class="label">Awaiting confirmation</span></div>
       </div>
       <div class="pipeline-item">
-        <span class="pipeline-dot" style="--accent:var(--dash-amber)"></span>
+        <div class="pipeline-icon" style="--tint:#fffbeb;--ink:#d97706;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+        </div>
         <div class="pipeline-text"><span class="num">{{ metrics.pipeline.ready_to_ship }}</span><span class="label">Ready to ship</span></div>
       </div>
       <div class="pipeline-item">
-        <span class="pipeline-dot" style="--accent:var(--dash-purple)"></span>
+        <div class="pipeline-icon" style="--tint:#eef2ff;--ink:#6366f1;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="13" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="7" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg>
+        </div>
         <div class="pipeline-text"><span class="num">{{ metrics.pipeline.in_transit }}</span><span class="label">In transit</span></div>
       </div>
       <div class="pipeline-item">
-        <span class="pipeline-dot" style="--accent:var(--dash-red)"></span>
+        <div class="pipeline-icon" style="--tint:#fef2f2;--ink:#dc2626;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.9 2.6 18a1.5 1.5 0 0 0 1.3 2.2h16.2a1.5 1.5 0 0 0 1.3-2.2L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/></svg>
+        </div>
         <div class="pipeline-text"><span class="num">{{ metrics.pipeline.delivery_failed }}</span><span class="label">Delivery failed</span></div>
       </div>
     </div>
   </div>
 
-  <div class="dash-section-title">Low Stock Books</div>
+  <div class="dash-section-title">LOW STOCK BOOKS</div>
   <div class="dash-panel">
     {% if metrics.low_stock_books %}
       <ul class="stock-list">
@@ -168,12 +207,15 @@
         {% endfor %}
       </ul>
     {% else %}
-      <p class="stock-empty">✓ No low stock items.</p>
+      <p class="stock-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+        No low stock items.
+      </p>
     {% endif %}
   </div>
 </div>
 
-<div id="content-main" style="margin-top:24px;">
+<div id="content-main" style="margin-top:28px;">
   {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
 </div>
 {% endblock %}
