@@ -25,6 +25,7 @@ class OrderAdmin(admin.ModelAdmin):
 		"order_number",
 		"customer_name",
 		"customer_phone",
+		"customer_address",
 		"book",
 		"quantity",
 		"total_amount",
@@ -129,6 +130,11 @@ class OrderAdmin(admin.ModelAdmin):
 	def customer_phone(self, obj):
 		return obj.customer.phone
 
+	@admin.display(description="Address")
+	def customer_address(self, obj):
+		parts = [obj.customer.address, obj.customer.city]
+		return ", ".join(part for part in parts if part)
+
 	@admin.display(description="Status")
 	def status_badge(self, obj):
 		color = {
@@ -190,11 +196,13 @@ class OrderAdmin(admin.ModelAdmin):
 			)
 
 		return format_html(
-			"<strong>{}</strong><br/>Phone: {}<br/>Previous Orders: <a href='{}'>{}</a><br/>"
+			"<strong>{}</strong><br/>Phone: {}<br/>Address: {}, {}<br/>Previous Orders: <a href='{}'>{}</a><br/>"
 			"Delivered: {} | Cancelled: {} | Returned: {} | Failed: {}<br/>"
 			"Active Orders: {}<br/>Total Spent: {}{}",
 			obj.customer.name,
 			obj.customer.phone,
+			obj.customer.address,
+			obj.customer.city,
 			total_orders_url,
 			summary.get("total_orders", 0),
 			summary.get("delivered", 0),
